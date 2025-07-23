@@ -6,7 +6,7 @@ import dev.zacsweers.moshix.sealed.annotations.TypeLabel
 @JsonClass(generateAdapter = true, generator = "sealed:type")
 sealed class ItemAPIModel(
     open val title: String,
-    val type: ItemAPIType
+    val type: ItemAPIType,
 ) {
     @TypeLabel("text")
     @JsonClass(generateAdapter = true)
