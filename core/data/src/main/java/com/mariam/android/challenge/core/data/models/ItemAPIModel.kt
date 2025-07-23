@@ -47,4 +47,3 @@ sealed class ItemAPIModel(
         type = ItemAPIType.PAGE,
     )
 }
-

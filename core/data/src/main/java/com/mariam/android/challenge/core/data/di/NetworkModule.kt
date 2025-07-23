@@ -7,8 +7,11 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import jakarta.inject.Singleton
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -16,20 +19,48 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideMoshi(
-        moshiBuilder: Moshi.Builder,
-    ): Moshi = moshiBuilder.build()
+    fun provideOkHttpClient(
+        loggingInterceptor: HttpLoggingInterceptor,
+    ): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+    }
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiService =
-        retrofit.create(ApiService::class.java)
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor().apply {
+            setLevel(HttpLoggingInterceptor.Level.BODY)
+        }
+    }
+
+    @Provides
+    @Singleton
+    fun provideRetrofitBuilder(
+        moshi: Moshi,
+        okHttpClient: OkHttpClient
+    ): Retrofit.Builder {
+        return Retrofit.Builder()
+            .baseUrl(NetworkConstants.BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(okHttpClient)
+    }
 
     @Provides
     @Singleton
     fun provideRetrofit(
-        retrofitBuilder: Retrofit.Builder,
-    ): Retrofit = retrofitBuilder
-        .baseUrl(NetworkConstants.BASE_URL)
+        builder: Retrofit.Builder,
+    ): Retrofit = builder.build()
+
+    @Provides
+    @Singleton
+    fun provideMoshi(): Moshi = Moshi.Builder()
         .build()
+
+    @Provides
+    @Singleton
+    fun provideApiService(
+        retrofit: Retrofit,
+    ): ApiService = retrofit.create(ApiService::class.java)
 }

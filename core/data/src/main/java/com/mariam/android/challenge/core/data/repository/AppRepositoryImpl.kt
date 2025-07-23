@@ -11,13 +11,15 @@ import javax.inject.Singleton
 class AppRepositoryImpl @Inject constructor(
     private val datasource: IAppDatasource,
 ) : AppRepository {
-    override suspend fun getItems(pageId: String): Result<List<ItemStateModel>> {
+    override suspend fun getItems(pageId: String): Result<ItemStateModel> {
         return try {
             val response = datasource.getItems(pageId = pageId)
 
             val body = response.body()
+            println(body)
+
             if (response.isSuccessful && body != null) {
-                val items = body.data?.map { it.toItemStateModel() } ?: emptyList()
+                val items = body.toItemStateModel()
                 Result.success(items)
             } else {
                 Result.failure(Exception("Unexpected response: ${response.code()} - ${response.message()}"))

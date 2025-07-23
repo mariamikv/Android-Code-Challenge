@@ -40,9 +40,14 @@ dependencies {
     implementation(libs.okhttp.logging)
     implementation(libs.retrofit.converter.moshi)
 
+    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin)
+
     implementation(libs.moshi.sealed.runtime)
+
+    ksp(libs.moshi.kotlin.codegen)
     ksp(libs.moshi.sealed.ksp)
+    ksp(libs.hilt.compiler)
 
     implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
 }

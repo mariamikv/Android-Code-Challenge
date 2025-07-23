@@ -18,14 +18,14 @@ val ROBOTO_MEDIUM = FontFamily(
 )
 
 val BODY_MEDIUM: TextStyle = TextStyle(
-    fontFamily = ROBOTO_MEDIUM,
+    fontFamily = ROBOTO_LIGHT,
     fontWeight = FontWeight.W400,
     fontSize = 12.sp,
     lineHeight = 17.38.sp,
 )
 
 val BODY_TEXT: TextStyle = TextStyle(
-    fontFamily = ROBOTO_LIGHT,
+    fontFamily = ROBOTO_MEDIUM,
     fontWeight = FontWeight.W400,
     fontSize = 16.sp,
     lineHeight = 23.17.sp,
