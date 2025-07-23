@@ -44,27 +44,27 @@ fun HomeScreenComponent(
             .fillMaxSize()
             .background(AndroidCodeChallengeTheme.colors.background),
     ) {
-        when (state.value.uiState) {
-            UiState.OK -> {
+        when {
+            state.value.data != null -> {
                 Content(
                     item = state.value.data,
                     onNavigationActionClick = onNavigationActionClick,
                 )
             }
-            UiState.Loading -> {
+            state.value.uiState is UiState.Error -> {
+                ErrorStateComponent(
+                    modifier = Modifier.fillMaxSize(),
+                    onRetryActionClick = {
+                        viewModel.retryItems()
+                    },
+                )
+            }
+            state.value.uiState == UiState.Loading -> {
                 HomeScreenSkeletonComponent(
                     modifier = Modifier
                         .fillMaxSize()
                         .windowInsetsPadding(WindowInsets.systemBars)
                         .padding(16.dp),
-                )
-            }
-            is UiState.Error -> {
-                ErrorStateComponent(
-                    modifier = Modifier.fillMaxSize(),
-                    onRetryActionClick = {
-
-                    },
                 )
             }
         }

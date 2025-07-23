@@ -29,8 +29,25 @@ class HomeScreenViewModel @Inject constructor(
         getItems()
     }
 
+    fun retryItems() {
+        getItems()
+    }
+
     private fun getItems() {
         viewModelScope.launch {
+            val cached = withContext(Dispatchers.IO) {
+                repository.getItemsFromDb()
+            }
+
+            println(cached)
+
+            _state.update {
+                it.copy(
+                    uiState = UiState.OK,
+                    data = cached,
+                )
+            }
+
             withContext(Dispatchers.IO) {
                 repository.getItems(pageId = PAGE_ID)
             }.onSuccess { response ->
@@ -44,6 +61,7 @@ class HomeScreenViewModel @Inject constructor(
                 _state.update {
                     it.copy(
                         uiState = UiState.Error(throwable),
+                        data = cached,
                     )
                 }
             }
