@@ -1,11 +1,11 @@
 plugins {
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.android.application)
+    id("com.android.library")
 }
 
 android {
     namespace = "com.mariam.android.challenge.core"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -33,5 +33,8 @@ android {
 
 dependencies {
     api(project(":core:ui"))
+    api(project(":core:navigation"))
+    api(project(":core:domain"))
+    api(project(":core:data"))
     implementation(libs.androidx.core.ktx)
 }

@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.mariam.android.challenge"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.mariam.android.challenge"
@@ -41,6 +41,7 @@ android {
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":feature"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

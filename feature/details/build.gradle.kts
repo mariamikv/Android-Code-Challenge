@@ -1,11 +1,11 @@
 plugins {
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.android.application)
+    id("com.android.library")
 }
 
 android {
     namespace = "com.mariam.android.challenge.feature.details"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
