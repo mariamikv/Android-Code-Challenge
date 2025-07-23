@@ -32,7 +32,7 @@ object HomeEntryModule {
                         Details(
                             data = DetailsScreenArgs(
                                 title = title,
-                                imageUrl = src,
+                                src = src,
                             )
                         )
                     )

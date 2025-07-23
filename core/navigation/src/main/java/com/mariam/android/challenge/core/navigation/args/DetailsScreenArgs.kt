@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class DetailsScreenArgs(
     val title: String,
-    val imageUrl: String,
+    val src: String,
 )

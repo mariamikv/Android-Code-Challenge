@@ -36,6 +36,9 @@ android {
 
 dependencies {
     implementation(project(":core:navigation"))
+    implementation(project(":core:ui"))
+    implementation(project(":core:domain"))
+
     implementation(libs.androidx.core.ktx)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.material3)
@@ -44,6 +47,8 @@ dependencies {
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.androidx.lifecycle.viewmodel.navigation3)
+
+    implementation(libs.coil.kt.compose)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
