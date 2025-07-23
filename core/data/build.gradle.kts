@@ -1,6 +1,9 @@
 plugins {
-    alias(libs.plugins.kotlin.android)
     id("com.android.library")
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -32,9 +35,16 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.okhttp.logging)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.kotlin.serialization)
+    implementation(libs.retrofit.converter.moshi)
+
+    implementation(libs.moshi.sealed.runtime)
+    ksp(libs.moshi.sealed.ksp)
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
 }
