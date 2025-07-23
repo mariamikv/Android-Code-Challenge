@@ -14,9 +14,7 @@ class AppRepositoryImpl @Inject constructor(
     override suspend fun getItems(pageId: String): Result<ItemStateModel> {
         return try {
             val response = datasource.getItems(pageId = pageId)
-
             val body = response.body()
-            println(body)
 
             if (response.isSuccessful && body != null) {
                 val items = body.toItemStateModel()

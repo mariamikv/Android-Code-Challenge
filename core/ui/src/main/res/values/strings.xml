@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- region: Error State -->
+    <string name="error_state_title">Something went wrong</string>
+    <!-- endregion: Error State -->
+
+    <!-- region: Button -->
+    <string name="retry_button">Retry</string>
+    <!-- endregion: Button -->
+</resources>

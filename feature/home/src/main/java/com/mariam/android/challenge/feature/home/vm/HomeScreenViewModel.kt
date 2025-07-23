@@ -34,7 +34,6 @@ class HomeScreenViewModel @Inject constructor(
             withContext(Dispatchers.IO) {
                 repository.getItems(pageId = PAGE_ID)
             }.onSuccess { response ->
-                println(response)
                 _state.update {
                     it.copy(
                         uiState = UiState.OK,
@@ -42,7 +41,6 @@ class HomeScreenViewModel @Inject constructor(
                     )
                 }
             }.onFailure { throwable ->
-                println(throwable)
                 _state.update {
                     it.copy(
                         uiState = UiState.Error(throwable),

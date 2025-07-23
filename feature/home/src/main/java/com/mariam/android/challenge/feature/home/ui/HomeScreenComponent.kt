@@ -28,6 +28,9 @@ import coil.request.ImageRequest
 import com.mariam.android.challenge.core.domain.models.ItemStateModel
 import com.mariam.android.challenge.core.ui.theme.AndroidCodeChallengeTheme
 import com.mariam.android.challenge.core.ui.theme.components.ContentTextComponent
+import com.mariam.android.challenge.core.ui.theme.components.ErrorStateComponent
+import com.mariam.android.challenge.core.ui.theme.models.UiState
+import com.mariam.android.challenge.feature.home.ui.skeleton.HomeScreenSkeletonComponent
 import com.mariam.android.challenge.feature.home.vm.HomeScreenViewModel
 
 @Composable
@@ -41,20 +44,28 @@ fun HomeScreenComponent(
             .fillMaxSize()
             .background(AndroidCodeChallengeTheme.colors.background),
     ) {
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .windowInsetsPadding(WindowInsets.systemBars)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-            item {
-                state.value.data?.let {
-                    Content(
-                        item = it,
-                        onNavigationActionClick = onNavigationActionClick
-                    )
-                }
+        when (state.value.uiState) {
+            UiState.OK -> {
+                Content(
+                    item = state.value.data,
+                    onNavigationActionClick = onNavigationActionClick,
+                )
+            }
+            UiState.Loading -> {
+                HomeScreenSkeletonComponent(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .windowInsetsPadding(WindowInsets.systemBars)
+                        .padding(16.dp),
+                )
+            }
+            is UiState.Error -> {
+                ErrorStateComponent(
+                    modifier = Modifier.fillMaxSize(),
+                    onRetryActionClick = {
+
+                    },
+                )
             }
         }
     }
@@ -62,6 +73,30 @@ fun HomeScreenComponent(
 
 @Composable
 private fun Content(
+    modifier: Modifier = Modifier,
+    item: ItemStateModel?,
+    onNavigationActionClick: (String, String) -> Unit,
+) {
+    LazyColumn(
+        modifier = modifier
+            .fillMaxSize()
+            .windowInsetsPadding(WindowInsets.systemBars)
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        item {
+            item?.let {
+                ItemComponent(
+                    item = it,
+                    onNavigationActionClick = onNavigationActionClick
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun ItemComponent(
     item: ItemStateModel,
     onNavigationActionClick: (String, String) -> Unit,
 ) {
@@ -118,7 +153,7 @@ private fun Content(
                     style = AndroidCodeChallengeTheme.typography.body_text,
                 )
                 item.items.forEach { child ->
-                    Content(
+                    ItemComponent(
                         item = child,
                         onNavigationActionClick = onNavigationActionClick,
                     )
@@ -137,7 +172,7 @@ private fun Content(
                     style = AndroidCodeChallengeTheme.typography.headline_1,
                 )
                 item.items.forEach { child ->
-                    Content(
+                    ItemComponent(
                         item = child,
                         onNavigationActionClick = onNavigationActionClick,
                     )
