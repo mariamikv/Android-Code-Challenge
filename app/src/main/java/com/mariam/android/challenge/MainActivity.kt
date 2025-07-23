@@ -33,11 +33,11 @@ class MainActivity : ComponentActivity() {
                     entryDecorators = listOf(
                         rememberSceneSetupNavEntryDecorator(),
                         rememberSavedStateNavEntryDecorator(),
-                        rememberViewModelStoreNavEntryDecorator()
+                        rememberViewModelStoreNavEntryDecorator(),
                     ),
                     entryProvider = entryProvider {
                         entryProviderBuilders.forEach { it(this) }
-                    }
+                    },
                 )
             }
         }

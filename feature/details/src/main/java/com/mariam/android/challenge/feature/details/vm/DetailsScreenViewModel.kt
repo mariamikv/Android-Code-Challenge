@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 @HiltViewModel(assistedFactory = DetailsScreenViewModel.Factory::class)
 class DetailsScreenViewModel @AssistedInject constructor(
-    @Assisted val navKey: Details
+    @Assisted val navKey: Details,
 ) : ViewModel() {
 
     val args = navKey.data

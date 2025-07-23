@@ -34,8 +34,4 @@ android {
 dependencies {
     api(project(":feature:home"))
     api(project(":feature:details"))
-    implementation(libs.androidx.core.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
 }

@@ -43,7 +43,11 @@ class AppRepositoryImpl @Inject constructor(
         return rootItems.firstOrNull { it is ItemStateModel.Page }
     }
 
-    suspend fun insertItemRecursively(item: ItemAPIModel, parentId: Long? = null, dao: ItemDao) {
+    suspend fun insertItemRecursively(
+        item: ItemAPIModel,
+        parentId: Long? = null,
+        dao: ItemDao,
+    ) {
         val entity = when (item) {
             is ItemAPIModel.Text -> ItemEntity(
                 title = item.title,

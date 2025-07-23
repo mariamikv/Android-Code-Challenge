@@ -30,11 +30,3 @@ android {
         jvmTarget = "11"
     }
 }
-
-dependencies {
-
-    implementation(libs.androidx.core.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-}

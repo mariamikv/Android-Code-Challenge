@@ -4,5 +4,6 @@ import com.mariam.android.challenge.core.domain.models.ItemStateModel
 
 interface AppRepository {
     suspend fun getItems(pageId: String): Result<ItemStateModel>
+
     suspend fun getItemsFromDb(): ItemStateModel?
 }

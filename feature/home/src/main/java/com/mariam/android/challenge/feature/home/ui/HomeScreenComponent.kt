@@ -51,6 +51,7 @@ fun HomeScreenComponent(
                     onNavigationActionClick = onNavigationActionClick,
                 )
             }
+
             state.value.uiState is UiState.Error -> {
                 ErrorStateComponent(
                     modifier = Modifier.fillMaxSize(),
@@ -59,6 +60,7 @@ fun HomeScreenComponent(
                     },
                 )
             }
+
             state.value.uiState == UiState.Loading -> {
                 HomeScreenSkeletonComponent(
                     modifier = Modifier

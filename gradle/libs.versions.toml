@@ -46,7 +46,6 @@ androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runt
 androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
 androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3" }
 
-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version = "2.9.0" }
 retrofit-converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version = "2.9.0" }
 
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
@@ -61,9 +60,6 @@ room-compiler = { group = "androidx.room", name = "room-compiler", version.ref =
 androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
 
 coil-kt-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
-
-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 
