@@ -3,6 +3,11 @@
 An Android application built as part of a code challenge. This app demonstrates modern Android development practices including Jetpack Compose, modularization and reactive UI state management.
 
 ---
+## Visual showcase
+| Dark Theme                                           | Light Theme                                           |
+|--------------------------------------------------|-------------------------------------------------|
+| <video src="https://github.com/user-attachments/assets/cfed0d03-3965-46f5-8395-d20da272fb98" size="300"/> | <video src="https://github.com/user-attachments/assets/ebab0f2a-9241-4fea-bb08-6a8e9f6b87d1" size="300"/> |
+---
 
 ## 🚀 Tech Stack
 
